@@ -1,72 +1,104 @@
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
-export default function UcapanElroy() {
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-yellow-100 via-orange-100 to-red-200 p-6 text-center">
-      {/* Judul */}
-      <motion.h1
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-4xl md:text-5xl font-bold text-orange-700 drop-shadow-lg mb-6"
-      >
-        🎉 Selamat & Sukses Elroy Aryaguna 🎉
-      </motion.h1>
-
-      {/* Foto & Kartu */}
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ type: "spring", stiffness: 100, delay: 0.5 }}
-      >
-        <Card className="bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden w-[320px]">
-          <CardContent className="p-4">
-            <Image
-              src="/77bed32a-eaa1-419b-a0dc-45422342f7a9.png"
-              alt="Elroy Aryaguna"
-              width={280}
-              height={280}
-              className="rounded-xl mx-auto border-4 border-orange-300"
-            />
-            <h2 className="text-2xl font-bold mt-4 text-orange-800">Elroy Aryaguna</h2>
-            <p className="text-gray-600 mt-2">
-              Penerima <b>Honorable Mention Level 2</b><br/> Olimpiade Sains Kuark 2021
-            </p>
-            <p className="mt-3 italic text-orange-700 font-medium">
-              "Aku Siap Menyambut Era Baru, Sains & Teknologi!"
-            </p>
-          </CardContent>
-        </Card>
-      </motion.div>
-
-      {/* Tombol kejutan */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="mt-8"
-      >
-        <Button
-          onClick={() => alert("🚀 Teruslah Berprestasi & Menginspirasi, Elroy! 🌟")}
-          className="bg-orange-600 hover:bg-orange-700 text-white font-bold px-6 py-3 rounded-full shadow-lg text-lg"
-        >
-          Klik untuk Kejutan ✨
-        </Button>
-      </motion.div>
-
-      {/* Animasi tambahan */}
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.5, type: "spring" }}
-        className="mt-10 text-xl font-semibold text-orange-800 drop-shadow-md"
-      >
-        🌟 Masa depan cerah menantimu, Elroy! 🌟
-      </motion.div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Elroy!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        header {
+            background: #ff6f61;
+            color: white;
+            padding: 30px 20px;
+            font-size: 2em;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in-out;
+        }
+        img {
+            max-width: 250px;
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            animation: zoomIn 2s ease-in-out;
+        }
+        .message {
+            font-size: 1.3em;
+            margin: 20px;
+            animation: slideUp 2s ease-in-out;
+        }
+        .surprise {
+            font-size: 1.8em;
+            color: #ff6f61;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #333;
+            color: white;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #ff6f61;
+            top: -10px;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>🎉 Selamat Elroy Aryaguna 🎉</header>
+    <img src="elroy.png" alt="Elroy Aryaguna">
+    <div class="message">
+        Kamu berhasil meraih <b>Honorable Mention Level 2</b> di <i>Olimpiade Sains Kuark 2021</i>! 🌟<br>
+        <p class="surprise">Kami bangga padamu! 🚀✨</p>
     </div>
-  );
-}
-
+    <footer>
+        Dibuat penuh kejutan & cinta ❤️ | Semoga sukses selalu, Elroy!
+    </footer>
+    <script>
+        // Efek confetti kejutan
+        for (let i = 0; i < 50; i++) {
+            let confetti = document.createElement("div");
+            confetti.className = "confetti";
+            confetti.style.left = Math.random() * window.innerWidth + "px";
+            confetti.style.backgroundColor = ["#ff6f61","#ffd700","#00c9ff","#92fe9d"][Math.floor(Math.random()*4)];
+            confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+            document.body.appendChild(confetti);
+        }
+    </script>
+</body>
+</html>
