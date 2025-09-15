@@ -1,66 +1,72 @@
-<!doctype html>
-<html lang="id">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Selamat Ulang Tahun, Elroy! 🎉</title>
-  <style>
-    body{font-family: 'Segoe UI', Roboto, system-ui, -apple-system, Arial; margin:0; min-height:100vh;
-      display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg,#fceabb,#f8b500);}
-    .card{background:rgba(255,255,255,0.95); padding:32px; border-radius:20px; box-shadow:0 12px 30px rgba(0,0,0,0.12);
-      max-width:760px; width:90%; text-align:center; position:relative; overflow:hidden;}
-    h1{margin:0 0 8px; font-size:2.2rem; letter-spacing: -0.5px;}
-    p.lead{margin:0 0 20px; color:#444; font-size:1.05rem;}
-    .cta{display:inline-block; padding:10px 18px; border-radius:12px; background:#ff7ab6; color:white; text-decoration:none;
-      font-weight:600; box-shadow:0 8px 18px rgba(255,122,182,0.25);}
-    .small{font-size:0.9rem; color:#666; margin-top:12px;}
-    /* Confetti (simple) */
-    .confetti {position:absolute; inset:0; pointer-events:none;}
-    .confetti i{position:absolute; width:12px; height:14px; opacity:0.95; transform:translateY(-20vh) rotate(0deg);
-      animation:fall 5s linear infinite; border-radius:2px;}
-    @keyframes fall {
-      0%{transform: translateY(-30vh) rotate(0deg); opacity:1;}
-      100%{transform: translateY(120vh) rotate(720deg); opacity:0.9;}
-    }
-    footer{margin-top:18px; font-size:0.85rem; color:#888;}
-    /* responsive */
-    @media (max-width:420px){ h1{font-size:1.6rem;} .card{padding:20px;} }
-  </style>
-</head>
-<body>
-  <div class="card" role="main" aria-label="Ucapan Selamat Ulang Tahun untuk Elroy">
-    <h1>Selamat Ulang Tahun, Elroy! 🎂🎉</h1>
-    <p class="lead">Semoga hari ini dipenuhi tawa, kejutan manis, dan semua hal baik yang kamu inginkan. Terus bersinar dan jadi versi terbaikmu—kamu pantas mendapatkan yang terbaik! ✨</p>
-    <a class="cta" href="#" id="btn-wish">Kirim Pelukan Virtual 🤗</a>
-    <div class="small">Klik tombol di atas untuk efek kejutan.</div>
-    <footer>Dengan cinta dari temanmu ❤️ — Semoga hari istimewa ini tak terlupakan.</footer>
-    <div class="confetti" id="confetti"></div>
-  </div>
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
-  <script>
-    // generate simple confetti pieces
-    const confettiContainer = document.getElementById('confetti');
-    const colors = ['#FF4D6D','#FFD166','#06D6A0','#4D96FF','#B794F4','#FF7AB6'];
-    function makePiece(){
-      const el = document.createElement('i');
-      const size = Math.random()*14 + 6;
-      el.style.width = size + 'px';
-      el.style.height = (size+2) + 'px';
-      el.style.left = Math.random()*100 + '%';
-      el.style.background = colors[Math.floor(Math.random()*colors.length)];
-      el.style.top = (Math.random()*20 - 10) + '%';
-      el.style.animationDuration = (4 + Math.random()*4) + 's';
-      el.style.transform = 'translateY(-30vh) rotate('+ (Math.random()*360) +'deg)';
-      confettiContainer.appendChild(el);
-      setTimeout(()=> el.remove(), 7000);
-    }
-    document.getElementById('btn-wish').addEventListener('click', function(e){
-      e.preventDefault();
-      // make a burst of confetti
-      for(let i=0;i<40;i++){ setTimeout(makePiece, i*40); }
-      this.textContent = 'Terima Kasih! 🎈';
-      this.style.background = '#6C5CE7';
-    });
-  </script>
-</body>
-</html>
+export default function UcapanElroy() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-yellow-100 via-orange-100 to-red-200 p-6 text-center">
+      {/* Judul */}
+      <motion.h1
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-4xl md:text-5xl font-bold text-orange-700 drop-shadow-lg mb-6"
+      >
+        🎉 Selamat & Sukses Elroy Aryaguna 🎉
+      </motion.h1>
+
+      {/* Foto & Kartu */}
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: "spring", stiffness: 100, delay: 0.5 }}
+      >
+        <Card className="bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden w-[320px]">
+          <CardContent className="p-4">
+            <Image
+              src="/77bed32a-eaa1-419b-a0dc-45422342f7a9.png"
+              alt="Elroy Aryaguna"
+              width={280}
+              height={280}
+              className="rounded-xl mx-auto border-4 border-orange-300"
+            />
+            <h2 className="text-2xl font-bold mt-4 text-orange-800">Elroy Aryaguna</h2>
+            <p className="text-gray-600 mt-2">
+              Penerima <b>Honorable Mention Level 2</b><br/> Olimpiade Sains Kuark 2021
+            </p>
+            <p className="mt-3 italic text-orange-700 font-medium">
+              "Aku Siap Menyambut Era Baru, Sains & Teknologi!"
+            </p>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Tombol kejutan */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="mt-8"
+      >
+        <Button
+          onClick={() => alert("🚀 Teruslah Berprestasi & Menginspirasi, Elroy! 🌟")}
+          className="bg-orange-600 hover:bg-orange-700 text-white font-bold px-6 py-3 rounded-full shadow-lg text-lg"
+        >
+          Klik untuk Kejutan ✨
+        </Button>
+      </motion.div>
+
+      {/* Animasi tambahan */}
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 1.5, type: "spring" }}
+        className="mt-10 text-xl font-semibold text-orange-800 drop-shadow-md"
+      >
+        🌟 Masa depan cerah menantimu, Elroy! 🌟
+      </motion.div>
+    </div>
+  );
+}
+
